@@ -1,8 +1,8 @@
 use crate::server::Server;
 
-mod server;
-mod router;
 mod handler;
+mod router;
+mod server;
 
 fn main() {
     let server = Server::new("localhost:3000");
