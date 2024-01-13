@@ -93,13 +93,17 @@ impl<'a> HttpResponse<'a> {
 impl<'a> From<HttpResponse<'a>> for String {
     fn from(value: HttpResponse<'a>) -> Self {
         let res = value.clone();
+        let len:usize = match &value.body {
+            Some(b)=>b.len(),
+            _=>0
+        };
         format!(
             "{} {} {}\r\n{}Content-Length: {}\r\n\r\n{}",
             &res.version(),
             &res.status_code(),
             &res.status_text(),
             &res.headers(),
-            &value.body.unwrap().len(),
+            len,
             &res.body()
         )
     }

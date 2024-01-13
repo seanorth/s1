@@ -1,4 +1,4 @@
-use crate::handler::{Handler, PageNotFoundHandler, WebServiceHandler};
+use crate::handler::{Handler, PageNotFoundHandler, StaticPageHandler, WebServiceHandler};
 use http::httprequest;
 use http::httprequest::HttpRequest;
 use http::httpresponse::HttpResponse;
@@ -18,7 +18,7 @@ impl Router {
                             let _ = resp.send_response(stream);
                         }
                         _ => {
-                            let resp: HttpResponse = WebServiceHandler::handle(&req);
+                            let resp: HttpResponse = StaticPageHandler::handle(&req);
                             let _ = resp.send_response(stream);
                         }
                     }
